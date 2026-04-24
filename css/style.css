@@ -1,18 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
 :root {
-    --bg: #f8fafc;          
+    --bg: #f8fafc;
     --card: #ffffff;
 
-    --primary: #d81b60;     
+    --primary: #d81b60;
     --primary-soft: #fce4ec;
 
-    --secondary: #6d28d9;   
+    --secondary: #6d28d9;
 
-    --text: #111827;        
+    --text: #111827;
     --muted: #6b7280;
 
-    --border: #e5e7eb;      
+    --border: #e5e7eb;
     --shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
 
@@ -23,7 +21,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
     padding: 25px;
@@ -56,18 +54,20 @@ h1 {
     font-weight: 500;
 }
 
+
 .grid {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
 }
 
+
 .card {
     flex: 1;
     min-width: 220px;
     padding: 15px;
     border-radius: 10px;
-    background: #fff;
+    background: #fffbfd;
     border: 1px solid var(--border);
     transition: all 0.25s ease;
 }
