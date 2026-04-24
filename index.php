@@ -10,7 +10,7 @@ function afficherUtilisateur(Affichable $u) {
 
 $client = new Client(1, "Amina Sarr", "amina@mail.com", "aminata", "123", "premium");
 $employe = new Employe(2, "Mohamed Ndiaye", "mndy1@mail.com", "mohamed", "456", 500000);
-$admin = new Administrateur(3, "Fatou Bintou", "fabi.s@mail.com", "bintou", "789");
+$admin = new Administrateur(3, "Fatou Bintou Seye", "fabi.s@mail.com", "bintou", "789");
 
 ?>
 

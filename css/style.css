@@ -1,18 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
-    --bg: #faeff3;
+    --bg: #f8fafc;          
     --card: #ffffff;
 
-    --primary: #d63384;
-    --secondary: #a855f7;
+    --primary: #d81b60;     
+    --primary-soft: #fce4ec;
 
-    --text: #1f2937;
+    --secondary: #6d28d9;   
+
+    --text: #111827;        
     --muted: #6b7280;
 
-    --border: #f3d1e6;
-
-    --shadow: 0 6px 15px rgba(0,0,0,0.05);
+    --border: #e5e7eb;      
+    --shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
 
 * {
@@ -36,6 +37,7 @@ header {
 h1 {
     color: var(--primary);
     font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
 .section {
@@ -51,6 +53,7 @@ h1 {
     color: var(--secondary);
     margin-bottom: 15px;
     font-size: 16px;
+    font-weight: 500;
 }
 
 .grid {
@@ -66,20 +69,23 @@ h1 {
     border-radius: 10px;
     background: #fff;
     border: 1px solid var(--border);
-    transition: 0.2s;
+    transition: all 0.25s ease;
 }
 
 .card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    border-color: var(--primary-soft);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 .card h3 {
     color: var(--primary);
     margin-bottom: 8px;
+    font-weight: 500;
 }
 
 .result {
-    background: #fff0f6;
+    background: var(--primary-soft);
     border-left: 4px solid var(--primary);
     padding: 10px;
     margin: 8px 0;
