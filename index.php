@@ -8,7 +8,6 @@ function afficherUtilisateur(Affichable $u) {
     return $u->afficher();
 }
 
-// Création des objets
 $client = new Client(1, "Amina Sarr", "amina@mail.com", "aminata", "123", "premium");
 $employe = new Employe(2, "Mohamed Ndiaye", "mndy1@mail.com", "mohamed", "456", 500000);
 $admin = new Administrateur(3, "Fatou Bintou", "fabi.s@mail.com", "bintou", "789");
@@ -31,7 +30,6 @@ $admin = new Administrateur(3, "Fatou Bintou", "fabi.s@mail.com", "bintou", "789
 
 <main>
 
-<!-- UTILISATEURS -->
 <div class="section">
     <h2>Utilisateurs créés</h2>
 
@@ -58,7 +56,6 @@ $admin = new Administrateur(3, "Fatou Bintou", "fabi.s@mail.com", "bintou", "789
     </div>
 </div>
 
-<!-- CONNEXION -->
 <div class="section">
     <h2>Connexion</h2>
 
@@ -67,7 +64,6 @@ $admin = new Administrateur(3, "Fatou Bintou", "fabi.s@mail.com", "bintou", "789
     <div class="result"><?php echo $admin->seConnecter(); ?></div>
 </div>
 
-<!-- REDUCTION -->
 <div class="section">
     <h2>Réduction (constantes)</h2>
 
@@ -79,7 +75,6 @@ $admin = new Administrateur(3, "Fatou Bintou", "fabi.s@mail.com", "bintou", "789
     </div>
 </div>
 
-<!-- SALAIRE -->
 <div class="section">
     <h2>Salaire annuel</h2>
 
@@ -88,7 +83,6 @@ $admin = new Administrateur(3, "Fatou Bintou", "fabi.s@mail.com", "bintou", "789
     </div>
 </div>
 
-<!-- SUPPRESSION -->
 <div class="section">
     <h2>Suppression utilisateur</h2>
 
@@ -97,7 +91,6 @@ $admin = new Administrateur(3, "Fatou Bintou", "fabi.s@mail.com", "bintou", "789
     </div>
 </div>
 
-<!-- STATIQUE -->
 <div class="section">
     <h2>Utilisateurs total</h2>
 
@@ -106,7 +99,6 @@ $admin = new Administrateur(3, "Fatou Bintou", "fabi.s@mail.com", "bintou", "789
     </div>
 </div>
 
-<!-- POLYMORPHISME -->
 <div class="section">
     <h2>Polymorphisme</h2>
 
