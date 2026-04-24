@@ -1,35 +1,33 @@
 <?php
 
-$base = dirname(__FILE__) . DIRECTORY_SEPARATOR;
-
-require_once $base . '..' . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR . 'Authentifiable.php';
-require_once $base . '..' . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR . 'Affichable.php';
-require_once $base . 'Personne.php';
+require_once __DIR__ . '/../interfaces/Authentifiable.php';
+require_once __DIR__ . '/../interfaces/Affichable.php';
+require_once __DIR__ . '/Personne.php';
 
 abstract class Utilisateur extends Personne implements Authentifiable, Affichable {
-    protected string $login;
-    protected string $motDePasse;
+    protected $login;
+    protected $motDePasse;
 
-    private static int $nombreUtilisateurs = 0;
+    protected static $nombreUtilisateurs = 0;
 
-    public function __construct(int $id, string $nom, string $email, string $login, string $motDePasse) {
+    public function __construct($id, $nom, $email, $login, $motDePasse) {
         parent::__construct($id, $nom, $email);
-        $this->login      = $login;
+        $this->login = $login;
         $this->motDePasse = $motDePasse;
         self::$nombreUtilisateurs++;
     }
 
-    public function seConnecter(): string {
-        return "✅ " . $this->getNom() . " s'est connecté avec le login : " . $this->login;
+    public function seConnecter() {
+        return $this->getNom() . " s'est connecté";
     }
 
-    public static function afficherNombre(): string {
-        return "Nombre total d'utilisateurs : " . self::$nombreUtilisateurs;
+    public static function afficherNombre() {
+        return self::$nombreUtilisateurs;
     }
 
-    abstract public function afficherRole(): string;
+    abstract public function afficherRole();
 
-    public function afficher(): string {
-        return $this->afficherInfos() . " | Rôle : " . $this->afficherRole();
+    public function afficher() {
+        return $this->afficherInfos() . " | Role: " . $this->afficherRole();
     }
 }

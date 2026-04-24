@@ -1,174 +1,126 @@
 <?php
 
-require_once __DIR__ . '/classes/Client.php';
-require_once __DIR__ . '/classes/Employe.php';
-require_once __DIR__ . '/classes/Administrateur.php';
+require_once "classes/Client.php";
+require_once "classes/Employe.php";
+require_once "classes/Administrateur.php";
 
-// ── Fonction polymorphisme ──
-function afficherUtilisateur(Affichable $u): string {
+function afficherUtilisateur(Affichable $u) {
     return $u->afficher();
 }
 
-// ── Création des objets ──
-$client = new Client(1, "Aminata Diallo",  "aminata@mail.com", "aminata",  "pass123", "premium");
-$employe = new Employe(2, "Moussa Ndiaye", "moussa@mail.com",  "moussa",   "pass456", 350000);
-$admin   = new Administrateur(3, "Fatou Sow", "fatou@mail.com","fatou",    "pass789");
+// Création des objets
+$client = new Client(1, "Aminata Diallo", "aminata@mail.com", "aminata", "123", "premium");
+$employe = new Employe(2, "Moussa Ndiaye", "moussa@mail.com", "moussa", "456", 200000);
+$admin = new Administrateur(3, "Fatou Sow", "fatou@mail.com", "fatou", "789");
 
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des Utilisateurs — POO PHP</title>
+    <title>Gestion des utilisateurs</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
 <header>
-    <h1>Gestion des <span>Utilisateurs</span></h1>
-    <span class="badge-php">POO · PHP 8</span>
+    <h1>Gestion des utilisateurs</h1>
 </header>
 
 <main>
 
-    <!-- Stat bar -->
-    <div class="stat-bar">
-        <div class="dot"></div>
-        <span><?= Utilisateur::afficherNombre() ?></span>
-    </div>
+<!-- UTILISATEURS -->
+<div class="section">
+    <h2>Utilisateurs créés</h2>
 
-    <!-- PARTIE 1–3 : Cartes utilisateurs -->
-    <div class="section-title">Utilisateurs créés</div>
     <div class="grid">
 
-        <!-- Client -->
         <div class="card client">
-            <div class="card-header">
-                <span class="card-name"><?= $client->getNom() ?></span>
-                <span class="role-badge"><?= $client->afficherRole() ?></span>
-            </div>
-            <div class="card-info">
-                ID &nbsp;&nbsp;&nbsp;: <span><?= $client->getId() ?></span><br>
-                Email : <span><?= $client->getEmail() ?></span><br>
-                Type &nbsp;: <span><?= $client->getTypeClient() ?></span>
-            </div>
+            <h3><?php echo $client->getNom(); ?></h3>
+            <p><?php echo $client->afficherInfos(); ?></p>
+            <span>Rôle : <?php echo $client->afficherRole(); ?></span>
         </div>
 
-        <!-- Employé -->
         <div class="card employe">
-            <div class="card-header">
-                <span class="card-name"><?= $employe->getNom() ?></span>
-                <span class="role-badge"><?= $employe->afficherRole() ?></span>
-            </div>
-            <div class="card-info">
-                ID &nbsp;&nbsp;&nbsp;: <span><?= $employe->getId() ?></span><br>
-                Email : <span><?= $employe->getEmail() ?></span><br>
-                Salaire : <span><?= number_format($employe->getSalaire(), 0, ',', ' ') ?> FCFA / mois</span>
-            </div>
+            <h3><?php echo $employe->getNom(); ?></h3>
+            <p><?php echo $employe->afficherInfos(); ?></p>
+            <span>Rôle : <?php echo $employe->afficherRole(); ?></span>
         </div>
 
-        <!-- Admin -->
         <div class="card admin">
-            <div class="card-header">
-                <span class="card-name"><?= $admin->getNom() ?></span>
-                <span class="role-badge"><?= $admin->afficherRole() ?></span>
-            </div>
-            <div class="card-info">
-                ID &nbsp;&nbsp;&nbsp;: <span><?= $admin->getId() ?></span><br>
-                Email : <span><?= $admin->getEmail() ?></span><br>
-                Droits : <span>Accès total</span>
-            </div>
+            <h3><?php echo $admin->getNom(); ?></h3>
+            <p><?php echo $admin->afficherInfos(); ?></p>
+            <span>Rôle : <?php echo $admin->afficherRole(); ?></span>
         </div>
 
     </div>
+</div>
 
-    <!-- RÉSULTATS DES MÉTHODES -->
-    <div class="section-title">Tests des méthodes</div>
-    <div class="results-grid">
+<!-- CONNEXION -->
+<div class="section">
+    <h2>Connexion</h2>
 
-        <!-- afficherInfos -->
-        <div class="result-block">
-            <h3>afficherInfos()</h3>
-            <div class="result-line info"><?= $client->afficherInfos() ?></div>
-            <div class="result-line info"><?= $employe->afficherInfos() ?></div>
-            <div class="result-line info"><?= $admin->afficherInfos() ?></div>
-        </div>
+    <div class="result"><?php echo $client->seConnecter(); ?></div>
+    <div class="result"><?php echo $employe->seConnecter(); ?></div>
+    <div class="result"><?php echo $admin->seConnecter(); ?></div>
+</div>
 
-        <!-- seConnecter -->
-        <div class="result-block">
-            <h3>seConnecter()</h3>
-            <div class="result-line success"><?= $client->seConnecter() ?></div>
-            <div class="result-line success"><?= $employe->seConnecter() ?></div>
-            <div class="result-line success"><?= $admin->seConnecter() ?></div>
-        </div>
+<!-- REDUCTION -->
+<div class="section">
+    <h2>Réduction (constantes)</h2>
 
-        <!-- Réductions (constantes) -->
-        <div class="result-block">
-            <h3>calculerReduction() — Constantes</h3>
-            <?php
-                $montant = 100000;
-                $reduc   = $client->calculerReduction($montant);
-            ?>
-            <div class="result-line warning">
-                Montant : <?= number_format($montant, 0, ',', ' ') ?> FCFA<br>
-                Taux (<?= $client->getTypeClient() ?>) : <?= $client->getTypeClient() === 'premium' ? Client::TAUX_PREMIUM * 100 : Client::TAUX_SIMPLE * 100 ?>%<br>
-                Réduction : <?= number_format($reduc, 0, ',', ' ') ?> FCFA
-            </div>
-        </div>
+    <?php $montant = 100000; ?>
 
-        <!-- Salaire annuel -->
-        <div class="result-block">
-            <h3>calculerSalaireAnnuel()</h3>
-            <div class="result-line warning">
-                Salaire mensuel : <?= number_format($employe->getSalaire(), 0, ',', ' ') ?> FCFA<br>
-                Salaire annuel &nbsp;: <?= number_format($employe->calculerSalaireAnnuel(), 0, ',', ' ') ?> FCFA
-            </div>
-        </div>
-
-        <!-- Suppression -->
-        <div class="result-block">
-            <h3>supprimerUtilisateur()</h3>
-            <div class="result-line danger"><?= $admin->supprimerUtilisateur($client) ?></div>
-        </div>
-
-        <!-- Statique -->
-        <div class="result-block">
-            <h3>Attribut statique</h3>
-            <div class="result-line info"><?= Utilisateur::afficherNombre() ?></div>
-        </div>
-
+    <div class="result">
+        Montant : <?php echo $montant; ?> FCFA <br>
+        Réduction : <?php echo $client->calculerReduction($montant); ?> FCFA
     </div>
+</div>
 
-    <!-- POLYMORPHISME -->
-    <div class="section-title">Polymorphisme — afficherUtilisateur(Affichable $u)</div>
-    <table class="poly-table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Objet passé</th>
-                <th>Résultat de afficher()</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $utilisateurs = [$client, $employe, $admin];
-            foreach ($utilisateurs as $i => $u):
-            ?>
-            <tr>
-                <td><?= $i + 1 ?></td>
-                <td><?= get_class($u) ?></td>
-                <td><?= afficherUtilisateur($u) ?></td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+<!-- SALAIRE -->
+<div class="section">
+    <h2>Salaire annuel</h2>
+
+    <div class="result">
+        <?php echo $employe->calculerSalaireAnnuel(); ?> FCFA
+    </div>
+</div>
+
+<!-- SUPPRESSION -->
+<div class="section">
+    <h2>Suppression utilisateur</h2>
+
+    <div class="result">
+        <?php echo $admin->supprimerUtilisateur($client); ?>
+    </div>
+</div>
+
+<!-- STATIQUE -->
+<div class="section">
+    <h2>Utilisateurs total</h2>
+
+    <div class="result">
+        <?php echo Utilisateur::afficherNombre(); ?>
+    </div>
+</div>
+
+<!-- POLYMORPHISME -->
+<div class="section">
+    <h2>Polymorphisme</h2>
+
+    <?php
+    $users = [$client, $employe, $admin];
+
+    foreach ($users as $u) {
+        echo "<div class='result'>" . afficherUtilisateur($u) . "</div>";
+    }
+    ?>
+
+</div>
 
 </main>
-
-<footer>
-    TP POO PHP · Gestion des Utilisateurs · Tous les concepts implémentés ✓
-</footer>
 
 </body>
 </html>
